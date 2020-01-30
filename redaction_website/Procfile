@@ -1,1 +1,1 @@
-web: sh -c "cd redaction_website && gunicorn redaction_website.wsgi"
+web: gunicorn redaction_website:redaction_website--log-file -
