@@ -1,1 +1,1 @@
-web: gunicorn redaction_website:redaction_website--log-file -
+web: cd redaction_website && gunicorn redaction_website.wsgi
