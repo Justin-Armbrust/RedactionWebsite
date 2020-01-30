@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="AWS-Redaction-Test">
+  <meta name="author" content="Justin Armbrust">
+
+  <title>AWS-Redaction-Website</title>
+  {% load static %}
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/simple-line-icons/css/simple-line-icons.css" %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static "css/landing-page.min.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center bg-dark">
+    <div class="container">
+      <h1 class="display-2 pb-4" style="font-size: 300%;"> AWS Redaction Test</h1>
+      <div class="row pb-5">
+        <div class="col-xl-10 mx-auto">
+          <form action="/redact" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col" style="width: auto;">
+                {{form}}
+              </div>
+              <div class="col pt-5">
+                <div class="btn-group-vertical" style="width: auto;">
+                  <button type="button submit" class="btn btn-default btn-lg"
+                    style="color: white;background-color:darkred;">
+                    <i class="fas fa-random" style="color: white;"></i> Redact
+                  </button>
+                    <button type="button" onclick="location.href='/'" class="btn btn-default btn-lg" style="color: white;background-color:green">
+                      <i class="fa fa-redo-alt" style="color: white;"></i> Clear
+                    </button>
+                </div>
+              </div>
+              <div class="col">
+                <label for="exampleFormControlTextarea2">Redacted Output:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="5"
+                  disabled>{{redacted_text}}</textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <p>Please feel free to supply the engine with any text to test how well the Redaction Engine works. All data that is proccessed is never saved</p>
+      <p>Currently the engine will redact entities with a score higher than 15%</p>
+    </div>
+  </div>
+
+  </header>
+  <!--Coming Soon-->
+  <header class="jumbotron">
+    <div class="row">
+      <h1 class="col-9 mx-auto display-4" style="font-size: 200%;">
+        For more Details on Amazon Medical Comprehend API <a href="https://aws.amazon.com/comprehend/medical/" target="
+        _blank">click here</a>
+      </h1>
+    </div>
+  </header>
+
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <a class="link text-muted small mb-4 mb-lg-0">Website created by Justin Armbrust</a>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <a class="link text-muted small mb-4 mb-lg-0"> Redaction testing for use by &copy;EVERSANA employees only</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+</body>
+
+</html>
