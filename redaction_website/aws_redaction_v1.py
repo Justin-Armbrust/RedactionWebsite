@@ -6,7 +6,9 @@ import sys
 
 def Redact(text,CS):
     client = boto3.client(service_name='comprehendmedical',
-                        region_name='us-west-2')
+                      region_name='us-west-2',
+                      aws_access_key_id="AKIAII6JSFSTY6ZNZITQ",
+                      aws_secret_access_key="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",)
     resp = client.detect_phi(Text=text)
     phi_list = list()
     for entity in resp['Entities']:
