@@ -18,7 +18,7 @@ def Redact(text,CS):
     if non_redacted_entity > 0:
         print("There were {} entities that were not redacted".format(non_redacted_entity))
     
-    return redacted_text
+    return redacted_text, json.dumps(resp)
         
 def entity_redaction(source_text,phi_list,confidence_threshold):
     redacted_text = source_text
