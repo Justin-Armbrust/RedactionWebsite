@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['readactiontest.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','readactiontest.herokuapp.com']
 
 CSRF_COOKIE_SECURE = True 
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -132,4 +132,5 @@ STATICFILES_DIRS =[ os.path.join(BASE_DIR,'redaction_website/templates/WebsiteFi
 
 django_heroku.settings(locals())
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require=True)
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
