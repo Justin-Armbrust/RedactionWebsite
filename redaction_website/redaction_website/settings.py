@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '26m0+fr^pm17t39pqwp+bjinr6ht&y7zq_-#&y_w*1w2s$q%lz'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['readactiontest.herokuapp.com']
 
 CSRF_COOKIE_SECURE = True 
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -127,3 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS =[ os.path.join(BASE_DIR,'redaction_website/templates/WebsiteFiles'),]
 
 django_heroku.settings(locals())
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require=True)
