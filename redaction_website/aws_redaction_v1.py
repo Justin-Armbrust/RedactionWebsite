@@ -2,13 +2,14 @@ import boto3
 import json
 from pprint import pprint
 import sys
+import os
 
 
 def Redact(text,CS):
     client = boto3.client(service_name='comprehendmedical',
                       region_name='us-west-2',
-                      aws_access_key_id="AKIAII6JSFSTY6ZNZITQ",
-                      aws_secret_access_key="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",)
+                      aws_access_key_id= os.environ.get("AWS_ID"),
+                      aws_secret_access_key= os.environ.get("AWS_KEY"),)
     resp = client.detect_phi(Text=text)
     phi_list = list()
     for entity in resp['Entities']:
